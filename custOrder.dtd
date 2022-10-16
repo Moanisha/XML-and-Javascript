@@ -1,0 +1,36 @@
+<!ELEMENT Root (Customers, Orders)>
+<!ELEMENT Customers (Customer*)>
+<!ELEMENT Orders (Order*)>
+<!ELEMENT Customer (CompanyName, ContactName, ContactTitle, Phone, Fax?, FullAddress)>
+<!ELEMENT FullAddress (Address, City, Region, PostalCode, Country)>
+<!ELEMENT Order (CustomerID, EmployeeID, OrderDate, RequiredDate, ShipInfo)>
+<!ELEMENT ShipInfo (ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry)>
+
+<!ELEMENT CompanyName (#PCDATA)>
+<!ELEMENT ContactName (#PCDATA)>
+<!ELEMENT ContactTitle (#PCDATA)>
+<!ELEMENT Fax (#PCDATA)>
+<!ELEMENT Phone (#PCDATA)>
+<!ELEMENT Address (#PCDATA)>
+<!ELEMENT City (#PCDATA)>
+<!ELEMENT Region (#PCDATA)>
+<!ELEMENT PostalCode (#PCDATA)>
+<!ELEMENT Country (#PCDATA)>
+<!ELEMENT CustomerID (#PCDATA)>
+<!ELEMENT EmployeeID (#PCDATA)>
+<!ELEMENT OrderDate (#PCDATA)>
+<!ELEMENT RequiredDate (#PCDATA)>
+<!ELEMENT ShipVia (#PCDATA)>
+<!ELEMENT Freight (#PCDATA)>
+<!ELEMENT ShipName (#PCDATA)>
+<!ELEMENT ShipAddress (#PCDATA)>
+<!ELEMENT ShipCity (#PCDATA)>
+<!ELEMENT ShipRegion (#PCDATA)>
+<!ELEMENT ShipPostalCode (#PCDATA)>
+<!ELEMENT ShipCountry (#PCDATA)>
+
+<!ATTLIST Root xmlns CDATA #IMPLIED>
+<!ATTLIST Customer CustomerID CDATA #IMPLIED>
+<!ATTLIST Freight unit CDATA #IMPLIED>
+<!ATTLIST ShipInfo ShippedDate CDATA #IMPLIED>
+

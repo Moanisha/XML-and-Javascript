@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+
+<script>
+//Create the XHR object
+var xhttp = new XMLHttpRequest();
+//Open the file
+xhttp.open("GET", "custOrderJs_6.xml", false);
+//Send the request
+xhttp.send();
+// Read data
+xmlDoc = xhttp.responseXML;
+
+//Display data   
+var order = xmlDoc.getElementsByTagName("Order");
+var CustomerID = xmlDoc.getElementsByTagName("CustomerID");
+var EmployeeID = xmlDoc.getElementsByTagName("EmployeeID");
+var OrderDate = xmlDoc.getElementsByTagName("OrderDate");
+var RequiredDate = xmlDoc.getElementsByTagName("RequiredDate");
+var ShipInfo = xmlDoc.getElementsByTagName('ShipInfo');
+
+var output ="<table border='1'>";
+    output += "<tr><th>Customer Id</th><th>Employee Id</th><th>Order Date</th><th>Required Date</th><tr>"
+for(let i=0;i<order.length;i++){
+    if(ShipInfo[i].getAttribute('ShippedDate')!=null){
+        output+="<tr>"
+        output+= "<td>"+CustomerID[i].innerHTML + "</td>";
+        output+= "<td>"+EmployeeID[i].innerHTML + "</td>";
+        output+= "<td>"+OrderDate[i].innerHTML + "</td>";
+        output+= "<td>"+RequiredDate[i].innerHTML + "</td>";
+        output+="</tr>"
+    } else {
+        output+="<tr style='color:red;'>"
+        output+= "<td>"+CustomerID[i].innerHTML + "</td>";
+        output+= "<td>"+EmployeeID[i].innerHTML + "</td>";
+        output+= "<td>"+OrderDate[i].innerHTML + "</td>";
+        output+= "<td>"+RequiredDate[i].innerHTML + "</td>";
+        output+="</tr>"
+    }
+}
+output += "</table>"
+document.getElementById("demo").innerHTML = output; 
+</script>
+</body>
+</html>

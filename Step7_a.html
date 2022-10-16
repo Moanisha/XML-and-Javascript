@@ -1,0 +1,83 @@
+<!--/*********************************************************************************************** 
+*  ITC5202 – Project 1 
+*	I declare that this assignment is my own work in accordance with Humber Academic Policy.   
+*	No part of this assignment has been copied manually or electronically from any other source 
+*	(including web sites) or distributed to other students. 
+*  
+*	Name: Moanisha Velayuthem            Student ID: N01482302                       Date:28/02/2022 
+* 
+**********************************************************************************************/  -->
+<!doctype html>
+<html>
+<!-- ITC5202: Professor: Shahdad -->
+<!-- 
+   Team Member: 
+-->
+<head>
+  <meta charset="utf-8">
+  <title>Project 1-Step 7</title>
+</head>
+
+<body>
+<p>
+  <label for="textfield">Enter CustomerID:</label>
+  <input type="text" name="textfield" id="textfield">
+  <input type="button" name="button" id="button" value="Search" onclick="searchCustomer()">
+</p>
+<p id="demo"></p>
+
+
+<script>
+//Create the XHR object
+var xhttp = new XMLHttpRequest();
+//Open the file
+xhttp.open("GET", "custOrder7.xml", false);
+//Send the request
+xhttp.send();
+// Read data
+xmlDoc = xhttp.responseXML;
+
+//Display data   
+
+
+  function searchCustomer(){
+    var searchInput = document.getElementById("textfield").value;
+    var order = xmlDoc.getElementsByTagName("Order");
+    var customer = xmlDoc.getElementsByTagName("Customer");
+    var companyName = xmlDoc.getElementsByTagName("CompanyName");
+    var country = xmlDoc.getElementsByTagName("Country");
+    var region = xmlDoc.getElementsByTagName("Region");
+    var CustomerID = xmlDoc.getElementsByTagName("CustomerID");
+    var EmployeeID = xmlDoc.getElementsByTagName("EmployeeID");
+    var OrderDate = xmlDoc.getElementsByTagName("OrderDate");
+    var RequiredDate = xmlDoc.getElementsByTagName("RequiredDate");
+    var ShipInfo = xmlDoc.getElementsByTagName('ShipInfo');
+    var ShipAddress = xmlDoc.getElementsByTagName('ShipAddress');
+
+
+    var output ="<table border='1'>";
+    output += "<tr><th>Company name</th><th>Country</th><th>Region</th><th>Order Date</th><th>Required Date</th><th>Shipped Date</th><th>Ship Address</th><tr>"
+    for(let i=0;i<customer.length;i++){
+      if(customer[i].getAttribute('CustomerID').includes(searchInput)){
+        for(let j=0;j<order.length;j++){
+          if(CustomerID[j].innerHTML.includes(searchInput)){
+            output+="<tr>"
+            output+= "<td>"+companyName[i].innerHTML + "</td>";
+            output+= "<td>"+country[i].innerHTML + "</td>";
+            output+= "<td>"+region[i].innerHTML + "</td>";
+            output+= "<td>"+OrderDate[j].innerHTML + "</td>";
+            output+= "<td>"+RequiredDate[j].innerHTML + "</td>";
+            output+= "<td>"+ShipInfo[j].getAttribute("ShippedDate") + "</td>";
+            output+= "<td>"+ShipAddress[j].innerHTML + "</td>";
+            output+="</tr>"
+          } 
+        }
+      } 
+    }
+    output += "</table>"
+    document.getElementById("demo").innerHTML = output; 
+  }
+
+</script>
+</body>
+</html>
